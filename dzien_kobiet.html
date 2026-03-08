@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dzień Kobiet - 8 Marca</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for elegant typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cursive: ['"Great Vibes"', 'cursive'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    },
+                    colors: {
+                        rose: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            200: '#fecdd3',
+                            300: '#fda4af',
+                            400: '#fb7185',
+                            500: '#f43f5e',
+                            600: '#e11d48',
+                            700: '#be123c',
+                            800: '#9f1239',
+                            900: '#881337',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'fade-in': 'fadeIn 2s ease-out forwards',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS for falling petals and micro-animations -->
+    <style>
+        .petal {
+            position: absolute;
+            background: linear-gradient(to bottom right, #fda4af, #f43f5e);
+            border-radius: 15px 0 15px 0;
+            opacity: 0.6;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg) scale(1);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg) scale(0.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-rose-50 via-white to-rose-100 min-h-screen overflow-hidden flex items-center justify-center relative select-none">
+    
+    <!-- Background petals container -->
+    <div id="petals-container" class="absolute inset-0 pointer-events-none z-0"></div>
+
+    <main class="relative z-10 p-6 md:p-8 max-w-2xl w-full mx-4">
+        <!-- Main Card with Glassmorphism effect -->
+        <div class="bg-white/60 backdrop-blur-xl rounded-3xl p-10 md:p-14 shadow-[0_20px_50px_rgba(244,63,94,0.15)] border border-white/80 text-center animate-fade-in relative overflow-hidden group hover:shadow-[0_20px_50px_rgba(244,63,94,0.25)] transition-shadow duration-500">
+            
+            <!-- Top Gradient Line -->
+            <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-rose-300 via-rose-500 to-rose-300 opacity-80"></div>
+
+            <!-- Floating Heart Icon -->
+            <div class="mb-8 relative inline-block animate-float">
+                <svg class="w-20 h-20 text-rose-500 filter drop-shadow-[0_4px_8px_rgba(244,63,94,0.3)] mx-auto animate-pulse-slow" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z"></path>
+                </svg>
+            </div>
+
+            <!-- Title -->
+            <h1 class="font-cursive text-5xl md:text-7xl text-rose-600 mb-4 drop-shadow-sm tracking-wide">
+                8 Marca
+            </h1>
+            
+            <h2 class="font-serif text-2xl md:text-3xl text-gray-800 mb-8 font-semibold leading-tight">
+                Wszystkiego najlepszego <br/>z okazji Dnia Kobiet!
+            </h2>
+
+            <!-- Message -->
+            <div class="space-y-4 font-serif text-gray-700 text-lg md:text-xl leading-relaxed">
+                <p>
+                    Z okazji Waszego święta, życzymy Wam,<br>
+                    aby każdy dzień był pełen uśmiechu, radości<br>
+                    i niezapomnianych chwil.
+                </p>
+                <p class="pt-2 text-rose-800 font-medium">
+                    Spełniajcie swoje marzenia z odwagą<br>
+                    i bądźcie zawsze tak wspaniałe, jak jesteście!
+                </p>
+            </div>
+
+            <!-- Interactive Button -->
+            <div class="mt-12 relative z-20">
+                <button onclick="createHeartPuff()" class="bg-gradient-to-r from-rose-400 to-rose-500 hover:from-rose-500 hover:to-rose-600 text-white font-serif px-10 py-4 md:text-lg rounded-full shadow-[0_10px_20px_rgba(244,63,94,0.3)] transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 active:scale-95 focus:outline-none focus:ring-4 focus:ring-rose-300">
+                    Otwórz życzenia
+                </button>
+            </div>
+            
+            <!-- Subtle Decorative Element -->
+            <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-rose-200 rounded-full mix-blend-multiply filter blur-2xl opacity-50 animate-pulse-slow"></div>
+            <div class="absolute -top-10 -left-10 w-40 h-40 bg-pink-200 rounded-full mix-blend-multiply filter blur-2xl opacity-50 animate-pulse-slow" style="animation-delay: 2s;"></div>
+        </div>
+    </main>
+
+    <!-- Script for interactions and animations -->
+    <script>
+        // Generate falling petals in the background
+        const container = document.getElementById('petals-container');
+        const petalCount = 35; // Number of petals to float around
+
+        for (let i = 0; i < petalCount; i++) {
+            createPetal();
+        }
+
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            
+            // Randomize properties for organic look
+            const size = Math.random() * 15 + 10;
+            const left = Math.random() * 100;
+            const duration = Math.random() * 15 + 10;
+            const delay = Math.random() * -20;
+            
+            petal.style.width = `${size}px`;
+            petal.style.height = `${size}px`;
+            petal.style.left = `${left}vw`;
+            petal.style.animationDuration = `${duration}s`;
+            petal.style.animationDelay = `${delay}s`;
+            
+            container.appendChild(petal);
+        }
+
+        // Create an interactive "puff" of hearts when the button is clicked
+        function createHeartPuff() {
+            const button = document.querySelector('button');
+            const rect = button.getBoundingClientRect();
+            
+            for(let i=0; i<20; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    // Randomly choose between a heart emoji and a flower
+                    heart.innerHTML = Math.random() > 0.3 ? '❤️' : '🌸';
+                    heart.style.position = 'fixed';
+                    heart.style.left = (rect.left + rect.width / 2) + 'px';
+                    heart.style.top = (rect.top + rect.height / 2) + 'px';
+                    heart.style.fontSize = (Math.random() * 24 + 16) + 'px';
+                    heart.style.pointerEvents = 'none';
+                    heart.style.zIndex = '50';
+                    heart.style.transition = 'all 1s cubic-bezier(0.25, 1, 0.5, 1)';
+                    heart.style.transform = `translate(-50%, -50%) scale(0)`;
+                    
+                    document.body.appendChild(heart);
+                    
+                    // Animate the heart exploding outwards
+                    requestAnimationFrame(() => {
+                        const angle = Math.random() * Math.PI * 2;
+                        const distance = Math.random() * 250 + 100;
+                        const tx = Math.cos(angle) * distance;
+                        const ty = Math.sin(angle) * distance - 50; 
+                        
+                        heart.style.transform = `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) scale(${Math.random() + 0.5}) rotate(${Math.random() * 360}deg)`;
+                        heart.style.opacity = '0';
+                    });
+                    
+                    // Cleanup
+                    setTimeout(() => heart.remove(), 1000);
+                }, i * 30);
+            }
+        }
+    </script>
+</body>
+</html>
